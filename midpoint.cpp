@@ -5,7 +5,6 @@
 const double PI = 3.14159265358979323846;
 
 // Declaración de funciones
-void  Hamiltonian (double q1, double q2, double  p1, double p2);
 double f1 (double q1, double q2);
 double f2 (double q1, double q2);
 void Midpoint (double t, double h, double & q1, double & q2, double & p1, double & p2);
@@ -19,21 +18,13 @@ int main ()
   p1 = 0;
   q2 = 0;
   p2 = std::sqrt((1+e)/(1-e));
-  H = -1/2;
-  L = std::sqrt(1-(e*e));
   for (t = 0; t <= 20*PI; t += h) {
+    H = ((1/2)*(p1*p1 + p2*p2)) - (1/std::sqrt(q1*q1 + q2*q2));
+    L = q1*p2 - q2*p1;
     std::cout << t << "\t" << q1 << "\t" << q2 << "\t" << H << "\t" << L << std:: endl;
     Midpoint(t, h, q1, q2, p1, p2);
-    Hamiltonian(q1, q2, p1, p2);
   } 
   return 0;
-}
-
-void  Hamiltonian (double q1, double q2, double  p1, double p2)
-{
-  double H, L;
-  H = ((1/2)*(p1*p1 + p2*p2)) - (1/std::sqrt(q1*q1 + q2*q2));
-  L = q1*p2 - q2*p1;  
 }
 
 double f1 (double t, double q1, double q2)
