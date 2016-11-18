@@ -19,8 +19,8 @@ int main ()
   q2 = 0;
   p2 = std::sqrt((1+e)/(1-e));
   for (t = 0; t <= 20*PI; t += h) {
-    H = ((1/2)*(p1*p1 + p2*p2)) - (1/std::sqrt(q1*q1 + q2*q2));
-    L = q1*p2 - q2*p1;
+    H = (1/2)*(p1*p1 + p2*p2) - 1/std::sqrt(q1*q1 + q2*q2);
+    L = (q1*p2) - (q2*p1);
     std::cout << t << "\t" << q1 << "\t" << q2 << "\t" << H << "\t" << L << std:: endl;
     Midpoint(t, h, q1, q2, p1, p2);
   } 
