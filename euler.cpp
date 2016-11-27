@@ -33,11 +33,19 @@ double f (double t, double q[N], int ii)
 // Método explícito de Euler 
 void Euler (double t, double h, double (&q)[N], double (&p)[N])
 {
+  double qn[N], pn[N];
   int ii;
+  // q(n+1) = q(n) + h*p(n)
   for (ii = 0; ii < N; ++ii) {
-    q[ii] = q[ii] + h*p[ii];
+    qn[ii] = q[ii] + h*p[ii];
   }
+  // p(n+1) = p(n) + h*f(t(n), q(n))
   for (ii = 0; ii < N; ++ii) {
-    p[ii] = p[ii] + h*f(t, q, ii);
+    pn[ii] = p[ii] + h*f(t, q, ii);
+  }
+  // Actualización nuevos valores
+  for (ii = 0; ii < N; ++ii) {
+    q[ii] = qn[ii];
+    p[ii] = pn[ii];
   }
 }
