@@ -36,7 +36,9 @@ void SV (double t, double h, double (&q)[N], double (&p)[N])
   double pm[N];
   int ii;
   for (ii = 0; ii < N; ++ii) {
-    pm[ii] = p[ii] + (h/2.0)*f(t + h/2, q, ii);
+    pm[ii] = p[ii] + (h/2.0)*f(t, q, ii);
+  }
+  for (ii = 0; ii < N; ++ii) {
     q[ii] = q[ii] + h*pm[ii];
   }
   for (ii = 0; ii < N; ++ii) {

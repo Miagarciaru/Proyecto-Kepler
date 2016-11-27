@@ -33,12 +33,14 @@ double f (double t, double q[N], int ii)
 // Método implícito del punto medio 
 void Midpoint (double t, double h, double (&q)[N], double (&p)[N])
 {
-  double q0[N], qm[N];
+  double qt[N], qm[N];
   int ii;
   for (ii = 0; ii < N; ++ii) {
-    q0[ii] = q[ii];
-    q[ii] = q[ii] + h*(p[ii] + (h/2.0)*f(t, q, ii));
-    qm[ii] = (q0[ii]+q[ii])/2.0;
+    qt[ii] = q[ii] + h*(p[ii] + (h/2.0)*f(t, q, ii));
+    qm[ii] = (q[ii]+qt[ii])/2.0;
+  }
+  for (ii = 0; ii < N; ++ii) {
+    q[ii] = qt[ii];
   }
   for (ii = 0; ii < N; ++ii) {
     p[ii] = p[ii] + h*f(t + h/2.0, qm, ii);
