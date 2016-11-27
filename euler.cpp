@@ -1,4 +1,4 @@
-// Explicit Euler Method
+// Problema de Kepler con método de Euler
 #include <iostream>
 #include <cmath>
 
@@ -17,7 +17,9 @@ int main ()
   double q[N] = {1.0-e, 0};
   double p[N] = {0, std::sqrt((1.0+e)/(1.0-e))};
   for (t = 0; t <= 20.0*PI; t += h) {
+    // Energía total
     H = (1.0/2.0)*(p[0]*p[0] + p[1]*p[1]) - 1.0/std::sqrt(q[0]*q[0] + q[1]*q[1]);
+    // Momento angular
     L = (q[0]*p[1]) - (q[1]*p[0]);
     std::cout << t << "\t" << q[0] << "\t" << q[1] << "\t" << H << "\t" << L << std:: endl;
     Euler(t, h, q, p);
@@ -25,6 +27,7 @@ int main ()
   return 0;
 }
 
+// Seguda derivada de la posición
 double f (double t, double q[N], int ii)
 {
   return -q[ii] / std::pow(q[0]*q[0] + q[1]*q[1], 3.0/2.0);   
