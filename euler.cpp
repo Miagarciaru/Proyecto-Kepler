@@ -38,6 +38,6 @@ void Euler (double t, double h, double (&q)[N], double (&p)[N])
     q[ii] = q[ii] + h*p[ii];
   }
   for (ii = 0; ii < N; ++ii) {
-    p[ii] = p[ii] + h*f(t + h/2, q, ii);
+    p[ii] = p[ii] + h*f(t, q, ii);
   }
 }

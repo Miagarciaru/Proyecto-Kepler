@@ -37,10 +37,10 @@ void Midpoint (double t, double h, double (&q)[N], double (&p)[N])
   int ii;
   for (ii = 0; ii < N; ++ii) {
     q0[ii] = q[ii];
-    q[ii] = q[ii] + h*p[ii];
+    q[ii] = q[ii] + h*(p[ii] + (h/2.0)*f(t, q, ii));
     qm[ii] = (q0[ii]+q[ii])/2.0;
   }
   for (ii = 0; ii < N; ++ii) {
-    p[ii] = p[ii] + h*f(t + h/2, qm, ii);
+    p[ii] = p[ii] + h*f(t + h/2.0, qm, ii);
   }
 }
